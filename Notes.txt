@@ -1,0 +1,39 @@
+first create .env
+then search on google type= google ai studio
+in left side of sidebar click Get Api Key then click create api Key
+after creating that api key copy that generated key then paste into .env file and give the variable name is GEMINI_API_KEY
+
+then click the Documentation in the side bar in overview copy the simple prompt code
+
+---------------------------------------------------
+from google import genai
+
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-3-flash-preview",
+    contents="Explain how AI works in a few words",
+)
+
+print(response.text)
+
+---------------------------------------------------
+now create the agent.py then paste that copied code
+
+----------------------------------------------------------------------------------------------------------
+create the virtual enviroinment
+
+python -m venv venv  
+venv\Scripts\activate
+
+----------------------------------------------------------------------------------------------------------
+in quickstart copy this = pip install -q -U google-genai = direct install or use requirement.txt
+
+create requirement.txt then paste google-genai
+pip install -r requirements.txt
+
+----------------------------------------------------------------------------------------------------------
+
+click all models  click Gemini 2.5 Flash then copy the model name gemini-2.5-flash
+change the model name in agent.py 
+
