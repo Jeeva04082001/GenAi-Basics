@@ -1,3 +1,32 @@
+
+LLM= Larger language model
+SLM = small language model
+
+VLM = vision language model
+
+state management = memory management (it need to know prev chat)
+
+bot vs ai agent vs agentic ai 
+
+Bot => fixed prompt(options)
+ai agent => no fixed rules. need instruction, simple and one task at the time.
+agentic ai => it think own. acts on its own, complex multistep task, lands and reasons. 
+
+Generative AI
+---------------
+Genai = it can create new data on its own based on trained data.
+
+
+
+
+
+
+
+
+
+
+
+
 first create .env
 then search on google type= google ai studio
 in left side of sidebar click Get Api Key then click create api Key
