@@ -1,0 +1,14 @@
+google-genai
+python-dotenv
+streamlit
+fastapi
+uvicorn
+asyncpg
+langchain-text-splitters
+pdfplumber
+langchain-google-genai
+faiss-cpu
+pypdf
+langchain-community
+langchain-google-genai
+

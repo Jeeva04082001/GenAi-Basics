@@ -1,0 +1,884 @@
+
+----statemanagement.py-------12-04-2026---------------
+
+
+first create .env
+then search on google type= google ai studio
+in left side of sidebar click Get Api Key then click create api Key
+after creating that api key copy that generated key then paste into .env file and give the variable name is GEMINI_API_KEY
+
+then click the Documentation in the side bar in overview copy the simple prompt code
+
+---------------------------------------------------
+from google import genai
+
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-3-flash-preview",
+    contents="Explain how AI works in a few words",
+)
+
+print(response.text)
+
+---------------------------------------------------
+now create the agent.py then paste that copied code
+
+----------------------------------------------------------------------------------------------------------
+create the virtual enviroinment
+
+python -m venv venv  
+venv\Scripts\activate
+
+----------------------------------------------------------------------------------------------------------
+in quickstart copy this = pip install -q -U google-genai = direct install or use requirement.txt
+
+create requirement.txt then paste google-genai
+pip install -r requirements.txt
+
+----------------------------------------------------------------------------------------------------------
+
+click all models  click Gemini 2.5 Flash then copy the model name gemini-2.5-flash
+change the model name in agent.py 
+
+===============================================================================================
+=================================================================================================
+
+-------stm_practise.py---------15-05-2026
+
+
+LLM= Larger language model
+SLM = small language model
+
+VLM = vision language model
+
+=================================================================================================
+=================================================================================================
+
+LLM, SLM, VLM
+🧠 LLM — Large Language Model = kind of AI
+
+
+A model trained on a large amount of text/data that can understand and generate language.
+
+Examples:
+
+ChatGPT
+Claude
+Gemini
+
+Simple:
+LLM = AI that is mainly good at understanding and generating text.
+
+A model trained on a large amount of data / text that is manily good at understanding and generating text.
+
+- It Creates a Human Like Text Generation
+- Using Text Data to Train The Model
+- It will be do Natural Language Processing that means:
+ 1. translate languages 2. Scentement Analysis
+- To trains the chatgpt using data from Multiple websits 
+internet craslers or web crawlers bots used for this
+
+RLHF,Attention
+
+========================================
+An LLM (Large Language Model) is a type of artificial intelligence built on deep neural networks designed to read, understand, and generate human-like text
+
+An LLM is a neural network trained on a huge amount of text to learn patterns in language and predict what text should come next.
+----------------------------------------------------------------------
+
+LLM means Large language model is a kind of AI build on deep neural networks trained on large amount of text 
+from the internet -- books, articles, websites and conversations to learns patterns of human Language.
+It predict what text should come next.
+
+When you ask an LLM a question, it doesn't "think" like a human does. Instead, 
+it plays a very fast game of predicting the next most logical word, over and over again, 
+based on the patterns it learned during its reading.
+
+Simple Example: 
+Predicting the Next Word If you say, "The sky is clearly...", 
+the LLM looks at those words and calculates that the most likely next word is "blue". 
+Once it adds "blue," it looks at the whole sentence again to guess the next word. 
+It repeats this process instantly to build entire paragraphs, sentences, and stories.
+
+------------------------------------------------------------
+
+How does the LLM understand the meaning of a word?
+
+An LLM does not understand a word exactly like a human does. It learns relationships between words from many examples during training.
+
+---------------------------------------------------------------
+How does an LLM work?
+
+1. User gives input: The user asks, “What is Python?”
+2. Tokenization: The model splits the text into small pieces called tokens.
+3. Convert into numbers: Each token is converted into numbers so the model can process it.
+4. Understand the context: The model looks at the words and their relationships to understand what the user is asking.
+5. Predict the next word: The model predicts which token is likely to come next.
+6. Select a token: The model selects a token based on its prediction.
+7. Repeat: It predicts the next token again and again until the complete answer is generated.
+
+[The model looks at the tokens and their relationships using attention.]
+It Capture the meaning of the words in Scentence  = Attention.
+
+1. User gives text          Example: What is Python?
+2. Tokenization             The text is split into tokens
+3. Tokens become numbers    Each token gets a token ID and is converted into a vector
+4. Transformer              The model looks at the tokens and their relationships using attention
+5. Prediction               The model gives probabilities for possible next tokens
+6. Next token is selected   A token such as 'Python' or 'programming' is selected
+7. Repeat                   The new token is added and the model predicts again until the answer is complete
+
+---------------------------------------------------------------
+
+Attention is a mechanism in a Transformer that helps the model understand the relationships between words 
+in a sentence and identify which words are important in the given context.
+
+Imagine this sentence:
+“The boy drank water because he was thirsty.”
+
+- “He” → “The boy” kooda related.
+- “Thirsty” → “drank water” action-oda related.
+Attention mechanism helps the model focus more on relevant words when processing a particular word.
+Attention is a mechanism that helps a model focus on relevant words in a sentence to understand the context and relationships between words.
+Remember: Attention = Focus on relevant words to understand context.
+
+--------------------------------------------------------------
+-
+
+4. Why is context important?
+The same word can have different meanings depending on the sentence.
+Example:
+1. I went to the bank to deposit money.
+2. I sat near the bank of the river.
+The surrounding words help the model understand which meaning is likely. This is one reason the
+Transformer attention mechanism is important
+
+
+---------------------------------------------------------------
+
+How does it know if it's right or wrong?  RLHF
+
+
+An LLM does not automatically know whether its answer is correct or wrong. 
+It predicts the next token based on patterns learned during training, 
+so sometimes it can generate incorrect information called hallucination.
+To improve this, we use RLHF, which stands for Reinforcement Learning from Human Feedback.
+It is a technique used to improve an LLM's responses based on human feedback.
+
+First, the model generates different answers to a question. 
+Then, humans rank the answers from best to worst.
+ A reward model learns these human preferences, and 
+ reinforcement learning is used to optimize the LLM to produce better answers.
+
+1. The Action: You ask the model a question. It gives three different answers.
+Imagine an AI gives two answers to the same question.
+
+2. Human Feedback: A human expert reads the three answers. The human ranks
+them: Answer A is great (give a treat), Answer B is okay, Answer C is wrong or
+unsafe (bad dog).
+3. Reinforcement Learning: The computer looks at the human's ratings. It
+adjusts its own internal math so that next time, it is more likely to generate
+answers like A, and less likely to generate answers like C
+
+However, RLHF does not guarantee that every answer will be correct.
+
+AI generates incorrect even when it sounds confident. This is called hallucination.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Humans compare and rank different answers. A reward model learns human preferences, and reinforcement learning is used to optimize the LLM to produce more helpful and appropriate answers.
+
+However, RLHF does not guarantee that every answer will be correct.
+
+RLHF = Reinforcement Learning from Human Feedback. It is used to make a pretrained model more
+helpful, safe, and better at following human instructions
+
+It is a technique used to improve an LLM's responses based on human feedback.
+
+1. The Action: You ask the model a question. It gives three different answers.
+Imagine an AI gives two answers to the same question.
+
+2. Human Feedback: A human expert reads the three answers. The human ranks
+them: Answer A is great (give a treat), Answer B is okay, Answer C is wrong or
+unsafe (bad dog).
+3. Reinforcement Learning: The computer looks at the human's ratings. It
+adjusts its own internal math so that next time, it is more likely to generate
+answers like A, and less likely to generate answers like C
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+========================================
+---------------------------------------------------------------------------------
+
+
+🧠 SLM — Small Language Model for smaller task [light model] low ram consumption
+
+A smaller and lighter language model.
+
+It usually has fewer parameters and needs less computing power.
+
+Simple:
+SLM = smaller version of a language model, usually faster/cheaper but less capable for complex tasks.
+
+
+----------------------------------------------------------------------------------------
+
+👁️ VLM — Vision Language Model
+
+A model that understands visual information and language. 
+For example, you provide a circuit photo and ask, “What is wrong with this circuit?” 
+The model analyzes the image and answers in text.
+Some models also support video and other input types.”
+
+A model that can understand images + text,audio video, documents.
+
+For example, you give it:
+
+"What's wrong with this circuit?"
+
+along with a photo.
+
+It can look at the image and answer using language.
+
+Simple:
+
+LLM → Text
+VLM → Text + Images
+
+
+
+----------------------------------------------------------------------------------------
+
+=================================================================================================
+
+State Management ≠ exactly Memory Management
+state management = memory management (it need to know prev chat)
+
+State management in an LLM application means keeping track of the current conversation or task information so the LLM can use it in the next steps.
+
+Example: User first says, “I have a fever.” Then says, “Suggest a doctor.” The system keeps the previous information so it can understand what the user is referring to.
+In simple terms, state management helps the system keep track of what's happening in the current conversation or task.
+
+
+State Management
+----------------------
+
+State = information about what is happening right now / what has happened in the current process.
+
+For example, in an appointment booking system:
+
+User: I have fever
+AI: You need a General Physician.
+
+User: Book me tomorrow.
+
+The system needs to know:
+
+Problem = fever
+Specialization = General Physician
+Date = tomorrow
+
+That's state.
+
+--------------------------------------------------------------
+
+Memory
+
+Memory is more about information that can be retained and used later.
+
+For example:
+
+User's name = John
+User prefers morning appointments
+Previous appointment = Dr. Smith
+
+So:
+
+State = current conversation/task information
+Memory = information retained for future use
+
+They are related, but not exactly the same thing.
+
+
+==========================================================================
+
+Bot vs AI Agent vs Agentic AI
+
+===============================================================================================
+=================================================================================================
+
+----------------------------------------------------------------
+
+
+🤖 Bot (Bot => fixed prompt(options))
+
+Usually follows predefined rules or flows.
+
+Example:
+
+Bot:
+Choose an option:
+
+1. Book appointment
+2. Cancel appointment
+3. Check appointment
+
+User:
+1
+
+Bot:
+Enter your date.
+
+It basically follows:
+
+IF user chooses 1
+→ booking flow
+
+Simple:
+
+Bot = predefined rules + predefined flow
+It doesn't necessarily mean it has to be only buttons/options, but traditional bots are often rule-based.
+
+A traditional bot follows predefined rules and steps to respond to the user. 
+For example, it may ask the user to choose an option to book or cancel an appointment.
+
+----------------------------------------------------------------
+
+AI Agent
+-------------------
+ai agent => no fixed rules. need instruction, simple and one task at the time.
+
+Simple:
+
+An AI agent uses an AI model and tools to complete a task.
+It can decide which steps or tools are needed based on the user's request.
+
+AI Agent = AI that can decide what steps/tools to use to complete a task.
+
+
+An AI agent uses an AI model + instructions + tools to accomplish a task.
+
+For example:
+"Book me the earliest appointment with a suitable doctor."
+
+The agent might:
+
+Understand problem
+       ↓
+Choose specialization
+       ↓
+Find doctors
+       ↓
+Check available slots
+       ↓
+Choose suitable slot
+       ↓
+Book appointment
+
+
+
+One important correction:
+
+❌ "AI agent has no fixed rules"
+
+Not exactly.
+
+An AI agent can have rules/instructions
+
+
+----------------------------------------------------------------
+
+
+
+agentic ai => it think own. acts on its own, complex multistep task, lands and reasons. 
+
+Agentic AI can plan and perform multiple steps to achieve a goal with less human guidance. 
+For example, it can plan a trip by researching places, comparing hotels, and preparing an itinerary.
+
+AI agent to decide and perform the next steps on its own, without requiring the user to guide every single step.
+
+For example, if I tell an agent to plan my Japan trip, it can decide to research destinations, compare flights and hotels,
+create an itinerary, and adjust the plan based on my budget. That ability to independently take actions toward a goal is autonomy.”
+
+
+Interview-la simple-ah ippadi sollunga:
+
+“Agentic AI is an AI system that can understand a goal, plan the steps, make decisions, use tools, and complete the task with less human intervention.”
+
+Example:
+
+“If I say, ‘Plan my Japan trip,’ the AI can research places, compare flights and hotels, create an itinerary, and adjust it according to my budget. That is Agentic AI.”
+
+One line to remember:
+
+Agentic AI = AI that can think, plan, decide, and act to achieve a goal.
+
+
+Generative AI
+---------------
+Genai = it can create new data on its own based on trained data.
+
+Generative AI creates new content based on patterns learned during training
+and the input/context you provide.
+
+Generative AI = AI that generates new content from learned patterns
+during training based on a given input/context.
+
+Generative AI creates new content, such as text, images, or music, 
+based on patterns learned during training and the input it receives.
+
+=================================================================================
+
+RAG stands for Retrieval-Augmented Generation.
+When a user asks a question, the system retrieves relevant information from external sources 
+and provides it to the LLM as context. The LLM then generates an answer based on that information.
+RAG helps answer questions using private or updated data without necessarily retraining the model.
+
+"RAG is called Retrieval-Augmented Generation because the system retrieves relevant information, 
+adds it to the LLM's context, and uses the LLM to generate an answer."
+
+
+1. Retrieval = Finding information
+The system searches your company PDF and finds the leave policy.
+2. Augmented = Adding information
+The system adds the retrieved leave policy to the user's question and gives both to the LLM.
+3. Generation = Creating an answer
+The LLM uses the question and the retrieved information to generate the answer: "Your company provides 12 casual leave days per year."
+
+
+Private data: Answer questions using company documents or internal data.
+Updated information: Retrieve current information without retraining the LLM.
+Reduce hallucinations: Give the LLM relevant facts to help it answer accurately. RAG cannot guarantee that every answer will be correct.
+Cost-effective updates: Update your documents or database instead of retraining the entire model whenever information changes.
+
+Why do we use RAG? — Interview Answer
+1. To access private data: RAG helps an LLM answer questions using company documents, PDFs, or internal databases.
+2. To get updated information: RAG retrieves the latest information from external sources without retraining the entire LLM.
+3. To reduce hallucinations: RAG provides relevant information to the LLM, helping it generate more accurate answers. However, it cannot guarantee that every answer will be correct.
+4. To reduce update costs: When information changes, we can update the documents or database instead of retraining the entire LLM.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. RAG vs Retraining
+Feature	              RAG	                                                 Retraining
+
+Meaning	              Retrieves information from external sources	       Trains the model again using data
+Purpose	              Helps answer questions using specific data	       Changes or improves the model's learned patterns
+Updating information	       Update the documents or database	                     Requires another training process
+Cost	                     Usually cheaper for updating knowledge	              Usually more expensive and resource-intensive
+Example	              Answer questions using company PDFs	              Train a model further using domain-specific data
+Best for	              Private, changing, or frequently updated information	Changing model behavior or adapting its learned capabilities
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RAG Flow — Simple Explanation
+RAG (Retrieval-Augmented Generation) works in two main stages: preparing the data and answering the user's question.
+1. Data preparation (Storing) (before the user asks a question)
+
+1. Collect documents: Upload PDFs, text files, or company documents.
+2. Chunking: Split large documents into smaller pieces.
+3. Embeddings: Convert each text piece into numerical representations.
+4. Store: Save the embeddings and text in a vector database.
+
+_______________________________________________________________________________________________________________________________
+
+
+2. Answering the user's question (Retrieval)
+
+1. User asks a question
+"What are the clinic's working hours?" 
+
+2. Convert the question into an embedding
+
+3. Retrieve relevant information
+Search the vector database for matching text.
+
+4. Send context + question to the LLM
+
+5. Generate the answer
+"The clinic is open from 9 AM to 6 PM."
+
+
+RAG stands for Retrieval-Augmented Generation. It works in two main stages.
+
+**1. Data Preparation:**
+
+First, we collect documents such as PDFs or text files. 
+Then, we split the documents into smaller pieces called chunks. 
+Next, we convert each chunk into embeddings and store them in a vector database.
+
+**2. Retrieval and Answer Generation:**
+
+When a user asks a question, we convert the question into an embedding 
+and search the vector database for relevant information. 
+Then, we send the retrieved information along with the user's question to the LLM. 
+Finally, the LLM uses that information to generate an answer.
+
+Easy way to remember
+Collect → Chunk → Embed → Store → Retrieve → Generate
+Simple example
+A user asks: "What is the company's leave policy?"
+1. The system retrieves the relevant information from a company document.
+2. It sends that information to the LLM along with the question.
+3. The LLM generates an answer based on the retrieved information.
+Interview tip: Remember the six keywords first. Then explain the two stages in your own words.
+
+[][][][]--------------------------------------------------
+
+In my RAG pipeline, I first extract text from a PDF and split it into smaller chunks. 
+I convert each chunk into an embedding and store the vectors in FAISS.
+
+When a user asks a question, I convert the question into an embedding and retrieve the top matching chunks using similarity search.
+
+I apply a similarity threshold to filter out weak matches. 
+I evaluate retrieval quality using Precision and Recall. 
+Finally, I pass the retrieved chunks as context to the LLM to generate an answer based on the PDF.
+
+Precision tells me how many retrieved chunks are relevant, 
+while Recall tells me how many relevant chunks I successfully retrieved.
+
+[][][][]--------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+Important point: RAG reduces the chance of hallucinations, but it does not eliminate them.
+
+--------------------------------------------------------------------------------------------
+=================================================================================
+how to improve the rag retrieval quality to give better answer
+how would you improve retrieval qauality and how would you evaluate
+
+
+1. Interview question: How would you improve RAG retrieval quality?
+
+"First, I would check whether the documents are split into proper chunks. 
+If the chunks are too large or too small, the system may miss important information.
+
+If the chunks are too small, important information may be split across multiple chunks, so the system may miss the complete context.
+If the chunks are too large, they may contain unrelated information, which can reduce retrieval accuracy.
+So, I would choose an appropriate chunk size to preserve context and improve retrieval quality.
+
+Next, I would use a suitable embedding model to improve the matching between the user's question and the documents.
+
+Then, I would use hybrid search, which combines keyword search and semantic search 
+to find relevant information. Semantic search finds information based on meaning,
+while keyword search finds information based on matching words.
+
+After that, I would apply a similarity threshold to filter out irrelevant chunks. 
+If no relevant chunks are found, the system should inform the user instead of generating an unsupported answer.
+
+After that, I would use a similarity score threshold to filter out irrelevant chunks 
+before passing them to the LLM. If the retrieved chunks do not meet the minimum relevance 
+threshold, the system should not generate an answer based on them. Instead, it should inform 
+the user that it could not find relevant information to answer the question.
+
+Next, I would use reranking to bring the most relevant chunks to the top.
+After that, I would use reranking to bring the most relevant information to the top.
+
+Finally, I would test the system with sample questions and check whether it retrieves the correct information 
+and generates accurate answers. Based on the results, I would make further improvements."
+
+Finally, I would test the system with sample questions and evaluate whether it retrieves relevant
+information and generates accurate, faithful answers. Based on the results, I would adjust the 
+chunking strategy, embedding model, search method, and threshold to improve retrieval quality
+and reduce incorrect answers.
+
+
+Interview answer
+"If RAG retrieval quality is poor, I would first check the document quality and chunking strategy. 
+Then I would use a suitable embedding model, combine keyword and semantic search with hybrid retrieval, 
+tune the Top-K value, and apply reranking to prioritize relevant chunks. Finally, 
+I would evaluate retrieval using metrics such as Precision@K and Recall@K and test it with real user questions."
+
+=================================================================================
+
+
+I would evaluate RAG retrieval quality by checking whether the system retrieves 
+the correct information for a user's question.
+
+I would use Precision to check how many retrieved chunks are relevant,
+ Recall to check how much relevant information is found, 
+ and MRR to check whether relevant information appears at the top of the results.
+
+Finally, I would check whether the LLM generates a correct answer based on the 
+retrieved information. 
+If the results are poor, I would improve chunking, embeddings, or reranking.
+
+If the retrieval quality is low, I would improve the chunking strategy, 
+adjust the Top-K value, use a better embedding model, or apply reranking.
+
+
+
+
+Evaluate retrieval quality
+Test the system with real questions and verify whether the correct information appears in the retrieved results.
+Useful metrics include:
+- Precision@K: How many retrieved results are relevant?
+- Recall@K: How much of the relevant information was retrieved?
+- MRR: How highly ranked is the first relevant result?
+
+
+Retrieval evaluation: Did the system find the correct information?
+Answer evaluation: Did the LLM generate the correct answer using that information?
+
+
+
+=================================================================================
+
+Why is chunking important in RAG?
+
+there is a limit for input contenxt in all LLM but in Rag we overcome the input context limit by using chunking process.
+
+LLMs have a limited context window, so we cannot always pass the entire document as input. 
+In RAG, we split large documents into smaller chunks and retrieve only the relevant chunks for the user's question. 
+This helps us use the available context efficiently and provide more relevant answers.
+
+Understand the small difference
+- Context window: The maximum amount of text or tokens an LLM can process in its context.
+- Chunking: Splitting a large document into smaller pieces.
+- Retrieval: Selecting the chunks relevant to the user's question.
+
+=================================================================================
+
+A Vector Database is a database that stores vector embeddings and helps us find information based on meaning or similarity.
+In simple words, it helps AI find information that is semantically similar to a user's question, even when the exact words are different.
+
+
+
+A vector database is a database used to store vector embeddings and retrieve information based on semantic similarity.
+First, an embedding model converts text into numerical vectors. The vector database stores these vectors 
+and compares them with the user's query vector to find relevant information.
+Vector databases are commonly used in RAG applications, semantic search, and AI chatbots. Examples include FAISS, ChromaDB, Pinecone, and pgvector.
+
+
+-----------------------------------------------------
+Traditional vs vector database?
+
+A traditional database stores structured data in tables and helps us find exact information using queries.
+commonly used to retrieve records using exact values and conditions.
+
+But a vector database stores embeddings and helps us find information based on meaning.
+retrieves information based on similarity in meaning.
+
+For example, a traditional database can find products below ₹500,
+a traditional database can find products below a specific price
+while a vector database can find products related to a user's question even when the exact keywords are different.
+In RAG, we use a vector database to retrieve relevant document chunks and pass them to the LLM to generate an answer.
+
+
+
+
+Why do we use a Vector Database in RAG?
+
+In your GenAI learning, remember this important connection:
+- Embedding model: Converts text into vectors.
+- Vector database: Stores the vectors and retrieves similar information.
+- RAG: Retrieves relevant information and gives it to the LLM to generate an answer.
+For example, in a PDF chatbot:
+1. Read the PDF.
+2. Split the PDF text into chunks.
+3. Convert the chunks into embeddings.
+4. Store the embeddings in a vector database.
+5. Convert the user's question into an embedding.
+6. Retrieve the most relevant chunks.
+7. Send those chunks to the LLM to generate an answer.
+
+=================================================================================
+
+Popular Vector Databases
+
+FAISS
+A library for efficient vector similarity search. Useful for learning and local RAG projects.
+
+ChromaDB
+Beginner-friendly option for storing and retrieving embeddings in RAG applications.
+
+
+Pinecone
+A managed vector database service, useful for applications that need hosted vector search.
+
+pgvector
+A PostgreSQL extension that supports storing vectors and performing similarity search.
+
+
+1. FAISS
+“FAISS is a library used to find similar vectors quickly. We can use it to retrieve relevant information in a RAG application.”
+
+Understand: Neraya text chunks irundha, question-ku related-aana chunks-ai fast-ah find panna help pannum.
+2. ChromaDB
+“ChromaDB helps us store embeddings and search for relevant information. It is easy to use when building RAG applications.”
+
+Understand: Embeddings-ai store panni, question-ku related information-ai retrieve panna use pannuvom.
+3. Pinecone
+“Pinecone is a cloud-based vector database. We can use it when we need to store and search embeddings in a hosted environment.”
+
+Understand: Local computer-la mattum illama, cloud-la vectors store panni search pannalam.
+4. pgvector
+“pgvector is a PostgreSQL extension that allows us to store vectors and search for similar ones in a PostgreSQL database.”
+
+Understand: PostgreSQL-la normal data-um vectors-um store panni, similarity search perform pannalam.
+Interviewer asks: “What is the difference between them?”
+Simple-ah ippadi explain pannunga:
+- FAISS: Fast similarity search library.
+- ChromaDB: Easy-to-use option for storing and searching embeddings.
+- Pinecone: Managed cloud vector database.
+- pgvector: Vector search inside PostgreSQL.
+
+
+=================================================================================
+
+
+1. Zero-shot Prompting
+
+Zero-shot prompting means giving an instruction to an LLM without providing any examples.
+The model generates an answer based on its existing training and the instruction.
+
+2. Few-shot Prompting
+
+Few-shot prompting means providing a few examples in the prompt to help the LLM understand 
+the expected pattern and generate a similar response.
+
+3. Chain-of-Thought (CoT) Prompting (Interview keyword: Step-by-step problem-solving).
+
+Chain-of-Thought prompting encourages an LLM to approach a problem through intermediate reasoning steps instead of jumping directly to an answer.
+Chain-of-Thought prompting encourages an LLM to break a complex problem into smaller steps before arriving at an answer. It can help with tasks that require multiple reasoning steps.
+
+4. ReAct — Reasoning and Acting
+
+ReAct is a prompting approach that combines reasoning with actions. The LLM can decide when to use a tool, observe the result, and continue toward the final answer.
+
+User asks: What is the weather in Chennai today?
+
+Step 1: Reason
+The AI identifies that it needs current weather information.
+
+Step 2: Act
+It calls a weather tool to get the current conditions.
+
+Step 3: Observe
+It receives the weather information from the tool.
+
+Step 4: Answer
+It uses the result to answer the user's question.
+
+ReAct stands for Reasoning and Acting. It allows an LLM to decide what action is needed, use tools to get information, observe the results, and continue until it can provide an answer.
+
+
+=================================================================================
+
+
+Generative AI and Discriminative AI are two types of AI models.
+
+Meaning: Generative AI learns patterns from existing data and uses them to generate new content.
+You ask AI: “Create an image of a cat wearing sunglasses.”
+AI generates a new image based on your prompt.
+
+Generative AI learns patterns from data and generates new content, such as text, images, or music. For example, ChatGPT can generate text based on a prompt.
+
+Discriminative AI learns to distinguish between categories or predict labels. For example, an email classification model can identify whether an email is spam or not spam.
+predicts an outcome from input data. (Identifies or predicts something.) that classifies data into different categories.
+Which photo contains a cat and which contains a dog?”
+AI photos-ah analyse panni answer pannum:
+- Photo 1 → Cat
+- Photo 2 → Dog
+
+In simple terms, Generative AI creates content, whereas Discriminative AI classifies or predicts.
+
+=================================================================================
+
+Pre-trained model
+Already learned general patterns
+
+Train further with specific data
+Customer support conversations
+
+Fine-tuned model
+Better adapted to customer support tasks
+
+
+Why do we use Fine-Tuning?
+- To adapt a model to a specific task or domain.
+- To improve performance on a particular type of data.
+- To help the model follow a desired response style or format.
+
+
+Fine-tuning is the process of taking a pre-trained model and training it further on a specific dataset to improve its performance on a particular task.
+
+For example, we can fine-tune a language model using customer support conversations so that it becomes better at handling customer support queries.
+
+
+=================================================================================
+
+Tool Calling vs Function Calling — Interview Answer
+
+Function calling allows an LLM to request a specific function to perform a task.
+Tool calling allows an LLM to use external tools, such as functions or APIs, to get information or perform actions.
+Both terms are often used interchangeably.
+
+
+1. User asks a question
+Example: What is the weather today?
+
+2. LLM selects a tool
+It requests the weather tool.
+
+3. Application executes the function
+The function calls the weather API and gets the result.
+
+4. Result returns to the LLM
+The application sends the function result back as a tool result.
+
+5. LLM generates the final answer
+It uses the result to answer the user.
+
+First, the LLM selects the appropriate tool based on the user's request. 
+Then, the application executes the corresponding function and sends the result back to the LLM. 
+Finally, the LLM uses that result to generate the response.
+
+=================================================================================
+
+“Rate limiting means restricting how many requests a user can send to an API within a certain time. 
+It helps prevent too many requests from overloading the server.”
+
+Example: If a user sends too many requests in a short time, the API can temporarily reject further requests.
+
+
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=======================================okf,mcp ==========================================
+
+
+
+---------------16-05-2026
+
+pip install streamlit
+
+streamlit run Ai_with_UI\Backend.py  ---running command
+
+
+
+1. statemanagement.py
+2. stm_practise.py , system_prompt.txt
+3. Ai_with_UI==> Backend.py
+
+4.Ai_with_Tools==> Backend.py, system_prompt.txt,
+tools_schema.py,weather_tools.py
+
+1.weather_tools.py,
+2.tools_schema.py,
+3.Backend.py,
+system_prompt.txt,
+
+5.Ai_with_db
+6.Ai_with_Rag
+
+
+
+
+
+
+
